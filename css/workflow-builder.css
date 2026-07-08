@@ -1,0 +1,72 @@
+.workflow-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr 340px;
+  gap: 1rem;
+}
+
+.node-palette {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.node-button {
+  width: 100%;
+  padding: 0.85rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 8px);
+  text-align: left;
+}
+
+.workflow-canvas {
+  position: relative;
+  min-height: 620px;
+  overflow: auto;
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--primary) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--primary) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    color-mix(in srgb, var(--bg-soft) 70%, transparent);
+  background-size: 32px 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.workflow-node {
+  position: absolute;
+  width: 190px;
+  padding: 0.9rem;
+  cursor: grab;
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  border-radius: calc(var(--radius) - 8px);
+  box-shadow: var(--shadow);
+}
+
+.workflow-node:active {
+  cursor: grabbing;
+}
+
+.node-title {
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.node-output {
+  max-height: 140px;
+  overflow: auto;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1200px) {
+  .workflow-layout {
+    grid-template-columns: 1fr;
+  }
+}

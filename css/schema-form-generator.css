@@ -1,0 +1,33 @@
+.schema-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.generated-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.generated-field {
+  padding: 1rem;
+  background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 8px);
+}
+
+.required-mark {
+  color: var(--danger);
+}
+
+.validation-note {
+  margin-top: 0.35rem;
+  color: var(--danger);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 1000px) {
+  .schema-layout {
+    grid-template-columns: 1fr;
+  }
+}

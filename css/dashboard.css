@@ -1,0 +1,73 @@
+.hero-panel {
+  padding: 2rem;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--primary) 12%, transparent),
+      transparent
+    ),
+    var(--card);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.module-card {
+  padding: 1.2rem;
+  transition: 180ms ease;
+}
+
+.module-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+}
+
+.module-card h3 {
+  margin: 0.8rem 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.module-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.metric-card {
+  padding: 1rem;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.metric-label {
+  color: var(--muted);
+}
+
+.track-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.track-item {
+  padding: 1rem;
+  border-left: 3px solid var(--primary);
+  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+  border-radius: calc(var(--radius) - 8px);
+}
+
+.activity-item {
+  padding: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.activity-item:last-child {
+  border-bottom: 0;
+}

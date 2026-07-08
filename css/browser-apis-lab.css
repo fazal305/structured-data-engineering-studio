@@ -1,0 +1,38 @@
+.api-lab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.capability-card {
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.capability-card h3 {
+  color: var(--primary);
+}
+
+.demo-output {
+  min-height: 90px;
+  padding: 0.9rem;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 8px);
+}
+
+.roadmap-step {
+  padding: 1rem;
+  border-left: 3px solid var(--secondary);
+  background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+  border-radius: calc(var(--radius) - 8px);
+}
+
+@media (max-width: 1000px) {
+  .api-lab-grid {
+    grid-template-columns: 1fr;
+  }
+}

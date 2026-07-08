@@ -1,0 +1,38 @@
+.analytics-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.analytics-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.chart-panel {
+  min-height: 360px;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.7rem;
+  align-items: end;
+}
+
+.table-scroll {
+  overflow: auto;
+  max-height: 560px;
+}
+
+@media (max-width: 1000px) {
+  .analytics-controls,
+  .analytics-summary {
+    grid-template-columns: 1fr;
+  }
+}

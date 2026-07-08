@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Playground</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/api-playground.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <div data-sidebar></div>
+
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <div class="page-kicker">API Tools</div>
+                    <h1 class="page-title">API Integration Playground</h1>
+                    <p class="page-subtitle">Explore multiple public APIs with dynamic request forms, raw JSON, parsed
+                        cards, tree view, timing, errors, and request history.</p>
+                </div>
+            </header>
+
+            <section class="api-layout">
+                <aside class="card-panel">
+                    <div class="page-kicker">API Presets</div>
+                    <h2>Choose API</h2>
+                    <div id="apiSelector" class="mt-3"></div>
+                </aside>
+
+                <section class="grid">
+                    <div class="card-panel">
+                        <div class="d-flex flex-wrap justify-content-between gap-2 mb-3">
+                            <div>
+                                <div class="page-kicker">Request Builder</div>
+                                <h2 id="selectedApiTitle">API Request</h2>
+                            </div>
+                            <button class="btn-app" id="runApiBtn">Run Request</button>
+                        </div>
+
+                        <div id="apiRequestForm" class="grid grid-2"></div>
+                        <div id="apiMeta" class="response-meta mt-3"></div>
+                    </div>
+
+                    <div class="grid grid-2">
+                        <div class="card-panel">
+                            <div class="d-flex justify-content-between gap-2 mb-2">
+                                <strong>Raw JSON</strong>
+                                <button class="btn-ghost" id="copyRawBtn">Copy</button>
+                            </div>
+                            <pre class="code-output" id="rawJsonOutput">Run an API request to see JSON.</pre>
+                        </div>
+
+                        <div class="card-panel">
+                            <strong>JSON Tree</strong>
+                            <div id="jsonTreeOutput" class="mt-3"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-panel">
+                        <div class="page-kicker">Parsed Output</div>
+                        <div id="parsedCards" class="grid grid-3 mt-3"></div>
+                    </div>
+
+                    <div class="card-panel">
+                        <div class="page-kicker">Request History</div>
+                        <div id="apiHistory" class="api-history mt-3"></div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/api-playground.js"></script>
+</body>
+
+</html>

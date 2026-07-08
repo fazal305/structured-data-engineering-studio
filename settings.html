@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <div data-sidebar></div>
+
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <div class="page-kicker">Workspace</div>
+                    <h1 class="page-title">Settings</h1>
+                    <p class="page-subtitle">Customize branding, dynamic theme tokens, transitions, loader delay, page
+                        size, and workspace import/export.</p>
+                </div>
+            </header>
+
+            <section class="settings-layout">
+                <div>
+                    <div id="settingsForm"></div>
+                    <div id="themeCustomizer"></div>
+                </div>
+
+                <aside class="theme-preview">
+                    <h2>Theme Preview</h2>
+                    <div class="preview-card mt-3">
+                        <span class="badge-soft">Live Dynamic Theme</span>
+                        <h3 class="mt-3">Structured data workspace</h3>
+                        <p class="page-subtitle">All colors, radius, and font settings come from localStorage workspace
+                            settings.</p>
+                        <button class="btn-app">Primary Action</button>
+                        <button class="btn-ghost ms-2">Secondary</button>
+                    </div>
+
+                    <div class="grid mt-3">
+                        <button class="btn-ghost" id="exportWorkspaceBtn">Export Workspace JSON</button>
+                        <label class="btn-ghost text-center">
+                            Import Workspace JSON
+                            <input type="file" id="importWorkspaceInput" accept=".json,application/json" hidden>
+                        </label>
+                        <button class="btn-ghost" id="resetDemoBtn">Reset Demo Data</button>
+                        <button class="btn-ghost" id="clearWorkspaceBtn">Clear LocalStorage</button>
+                    </div>
+                </aside>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+
+</html>

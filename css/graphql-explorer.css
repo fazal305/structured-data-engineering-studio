@@ -1,0 +1,51 @@
+.graphql-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1rem;
+}
+
+.editor-toolbar,
+.response-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.headers-grid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.history-list {
+  display: grid;
+  gap: 0.8rem;
+  max-height: 480px;
+  overflow: auto;
+}
+
+.history-item {
+  padding: 0.9rem;
+  background: color-mix(in srgb, var(--bg-soft) 70%, transparent);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 8px);
+  cursor: pointer;
+}
+
+.history-item:hover {
+  border-color: var(--primary);
+}
+
+.response-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+@media (max-width: 1000px) {
+  .graphql-layout {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,43 @@
+.api-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1rem;
+}
+
+.api-option {
+  display: block;
+  width: 100%;
+  padding: 0.9rem;
+  margin-bottom: 0.7rem;
+  text-align: left;
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 8px);
+}
+
+.api-option.active,
+.api-option:hover {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.parsed-card {
+  padding: 1rem;
+  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 8px);
+}
+
+.api-history {
+  display: grid;
+  gap: 0.7rem;
+  max-height: 420px;
+  overflow: auto;
+}
+
+@media (max-width: 1000px) {
+  .api-layout {
+    grid-template-columns: 1fr;
+  }
+}

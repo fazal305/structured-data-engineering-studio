@@ -1,0 +1,39 @@
+.query-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.token-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.token-pill {
+  padding: 0.4rem 0.6rem;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  border-radius: 999px;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.8rem;
+}
+
+.saved-query {
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 8px);
+  cursor: pointer;
+}
+
+.saved-query:hover {
+  border-color: var(--primary);
+}
+
+@media (max-width: 1000px) {
+  .query-layout {
+    grid-template-columns: 1fr;
+  }
+}
