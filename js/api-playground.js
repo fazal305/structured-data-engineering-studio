@@ -100,6 +100,8 @@ async function runSelectedApiRequest() {
 
     const startedAt = performance.now();
 
+    studio.showStatus("Sending request...", "info");
+
     try {
         const response = await fetch(endpoint, { method });
         const data = await response.json();
@@ -130,6 +132,7 @@ async function runSelectedApiRequest() {
 
         studio.addActivityLog("API Playground", "Request executed", endpoint);
         renderApiHistory();
+        studio.showStatus("Request completed.", "success");
     } catch (error) {
         latestApiData = { error: error.message };
         renderRawJson(latestApiData);
