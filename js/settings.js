@@ -3,19 +3,27 @@ const studio = window.StructuredStudio;
 studio.initSharedPage("settings");
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderSettingsForm();
-    renderThemeCustomizer();
+  renderSettingsForm();
+  renderThemeCustomizer();
 
-    document.querySelector("#exportWorkspaceBtn").addEventListener("click", exportWorkspace);
-    document.querySelector("#importWorkspaceInput").addEventListener("change", importWorkspace);
-    document.querySelector("#resetDemoBtn").addEventListener("click", resetDemoWorkspace);
-    document.querySelector("#clearWorkspaceBtn").addEventListener("click", clearWorkspace);
+  document
+    .querySelector("#exportWorkspaceBtn")
+    .addEventListener("click", exportWorkspace);
+  document
+    .querySelector("#importWorkspaceInput")
+    .addEventListener("change", importWorkspace);
+  document
+    .querySelector("#resetDemoBtn")
+    .addEventListener("click", resetDemoWorkspace);
+  document
+    .querySelector("#clearWorkspaceBtn")
+    .addEventListener("click", clearWorkspace);
 });
 
 function renderSettingsForm() {
-    const workspace = studio.loadWorkspace();
+  const workspace = studio.loadWorkspace();
 
-    document.querySelector("#settingsForm").innerHTML = `
+  document.querySelector("#settingsForm").innerHTML = `
     <div class="settings-section">
       <div class="page-kicker">Brand</div>
       <h2>Workspace Identity</h2>
@@ -50,67 +58,77 @@ function renderSettingsForm() {
     </div>
   `;
 
-    document.querySelector("#saveBrandBtn").addEventListener("click", saveBrandSettings);
+  document
+    .querySelector("#saveBrandBtn")
+    .addEventListener("click", saveBrandSettings);
 
-    document.querySelector("#transitionSpeed").addEventListener("input", (event) => {
-        setTransitionSpeed(Number(event.target.value));
+  document
+    .querySelector("#transitionSpeed")
+    .addEventListener("input", (event) => {
+      setTransitionSpeed(Number(event.target.value));
     });
 
-    document.querySelector("#loaderDelay").addEventListener("input", (event) => {
-        setLoaderDelay(Number(event.target.value));
-    });
+  document.querySelector("#loaderDelay").addEventListener("input", (event) => {
+    setLoaderDelay(Number(event.target.value));
+  });
 
-    document.querySelector("#defaultPageSize").addEventListener("input", (event) => {
-        const workspace = studio.loadWorkspace();
-        workspace.settings.defaultPageSize = Number(event.target.value) || 25;
-        studio.saveWorkspace(workspace);
+  document
+    .querySelector("#defaultPageSize")
+    .addEventListener("input", (event) => {
+      const workspace = studio.loadWorkspace();
+      workspace.settings.defaultPageSize = Number(event.target.value) || 25;
+      studio.saveWorkspace(workspace);
     });
 }
 
 function saveBrandSettings() {
-    const workspace = studio.loadWorkspace();
+  const workspace = studio.loadWorkspace();
 
-    workspace.brand.name = document.querySelector("#brandName").value.trim() || studio.defaultWorkspace.brand.name;
-    workspace.brand.tagline = document.querySelector("#brandTagline").value.trim() || studio.defaultWorkspace.brand.tagline;
+  workspace.brand.name =
+    document.querySelector("#brandName").value.trim() ||
+    studio.defaultWorkspace.brand.name;
+  workspace.brand.tagline =
+    document.querySelector("#brandTagline").value.trim() ||
+    studio.defaultWorkspace.brand.tagline;
 
-    studio.saveWorkspace(workspace);
-    studio.applyThemeSettings();
-    studio.renderSidebar("settings");
-    studio.showStatus("Brand settings saved.", "success");
+  studio.saveWorkspace(workspace);
+  studio.applyThemeSettings();
+  studio.renderSidebar("settings");
+  studio.showStatus("Brand settings saved.", "success");
 }
 
 function renderThemeCustomizer() {
-    const workspace = studio.loadWorkspace();
-    const theme = workspace.theme;
+  const workspace = studio.loadWorkspace();
+  const theme = workspace.theme;
 
-    const colorTokens = [
-        "bg",
-        "bgSoft",
-        "text",
-        "muted",
-        "primary",
-        "secondary",
-        "success",
-        "warning",
-        "danger"
-    ];
+  const colorTokens = [
+    "bg",
+    "bgSoft",
+    "text",
+    "muted",
+    "primary",
+    "secondary",
+    "success",
+    "warning",
+    "danger",
+  ];
 
-    document.querySelector("#themeCustomizer").innerHTML = `
+  document.querySelector("#themeCustomizer").innerHTML = `
     <div class="settings-section">
       <div class="page-kicker">Theme</div>
       <h2>Dynamic Theme Tokens</h2>
 
       <div class="color-grid mt-3">
         ${colorTokens
-            .map(
-                (token) => `
+          .map(
+            (token) => `
               <div>
                 <label class="form-label">${studio.escapeHtml(token)}</label>
                 <input type="color" class="form-control form-control-color w-100" value="${studio.escapeHtml(theme[token])}" data-theme-token="${studio.escapeHtml(token)}">
               </div>
-            `
-            )
-            .join("")}
+            `,
+          )
+          .join("")}
       </div>
 
       <label class="form-label mt-3">Card Background</label>
@@ -118,15 +136,20 @@ function renderThemeCustomizer() {
 
       <label class="form-label mt-3">Font Family</label>
       <select class="form-select" data-theme-token="fontFamily">
-        ${["Inter, sans-serif", "Arial, sans-serif", "Georgia, serif", "Consolas, monospace"]
-            .map(
-                (font) => `
+        ${[
+          "Inter, sans-serif",
+          "Arial, sans-serif",
+          "Georgia, serif",
+          "Consolas, monospace",
+        ]
+          .map(
+            (font) => `
               <option value="${studio.escapeHtml(font)}" ${font === theme.fontFamily ? "selected" : ""}>
                 ${studio.escapeHtml(font)}
               </option>
-            `
-            )
-            .join("")}
+            `,
+          )
+          .join("")}
       </select>
 
       <label class="form-label mt-3">
@@ -139,111 +162,113 @@ function renderThemeCustomizer() {
     </div>
   `;
 
-    document.querySelectorAll("[data-theme-token]").forEach((input) => {
-        input.addEventListener("input", () => {
-            updateThemeToken(input.dataset.themeToken, input.value);
-        });
-
-        input.addEventListener("change", () => {
-            updateThemeToken(input.dataset.themeToken, input.value);
-        });
+  document.querySelectorAll("[data-theme-token]").forEach((input) => {
+    input.addEventListener("input", () => {
+      updateThemeToken(input.dataset.themeToken, input.value);
     });
 
-    document.querySelector("#resetThemeBtn").addEventListener("click", resetThemeToDefault);
+    input.addEventListener("change", () => {
+      updateThemeToken(input.dataset.themeToken, input.value);
+    });
+  });
+
+  document
+    .querySelector("#resetThemeBtn")
+    .addEventListener("click", resetThemeToDefault);
 }
 
 function updateThemeToken(name, value) {
-    const workspace = studio.loadWorkspace();
+  const workspace = studio.loadWorkspace();
 
-    workspace.theme[name] = name === "radius" ? Number(value) : value;
+  workspace.theme[name] = name === "radius" ? Number(value) : value;
 
-    studio.saveWorkspace(workspace);
-    studio.applyThemeSettings();
+  studio.saveWorkspace(workspace);
+  studio.applyThemeSettings();
 
-    const radiusValue = document.querySelector("#radiusValue");
-    if (radiusValue && name === "radius") {
-        radiusValue.textContent = `${value}px`;
-    }
+  const radiusValue = document.querySelector("#radiusValue");
+  if (radiusValue && name === "radius") {
+    radiusValue.textContent = `${value}px`;
+  }
 }
 
 function resetThemeToDefault() {
-    const workspace = studio.loadWorkspace();
+  const workspace = studio.loadWorkspace();
 
-    workspace.theme = studio.safeClone(studio.defaultWorkspace.theme);
+  workspace.theme = studio.safeClone(studio.defaultWorkspace.theme);
 
-    studio.saveWorkspace(workspace);
-    studio.applyThemeSettings();
-    renderThemeCustomizer();
+  studio.saveWorkspace(workspace);
+  studio.applyThemeSettings();
+  renderThemeCustomizer();
 
-    studio.showStatus("Theme reset to default.", "success");
+  studio.showStatus("Theme reset to default.", "success");
 }
 
 function setTransitionSpeed(ms) {
-    const workspace = studio.loadWorkspace();
+  const workspace = studio.loadWorkspace();
 
-    workspace.settings.transitionSpeedMs = ms;
-    studio.saveWorkspace(workspace);
+  workspace.settings.transitionSpeedMs = ms;
+  studio.saveWorkspace(workspace);
 
-    document.querySelector("#transitionSpeedValue").textContent = `${ms}ms`;
+  document.querySelector("#transitionSpeedValue").textContent = `${ms}ms`;
 }
 
 function setLoaderDelay(ms) {
-    const workspace = studio.loadWorkspace();
+  const workspace = studio.loadWorkspace();
 
-    workspace.settings.loaderDelayMs = ms;
-    studio.saveWorkspace(workspace);
+  workspace.settings.loaderDelayMs = ms;
+  studio.saveWorkspace(workspace);
 
-    document.querySelector("#loaderDelayValue").textContent = `${ms}ms`;
+  document.querySelector("#loaderDelayValue").textContent = `${ms}ms`;
 }
 
 function exportWorkspace() {
-    const workspace = studio.loadWorkspace();
+  const workspace = studio.loadWorkspace();
 
-    studio.downloadJson("structured-data-engineering-workspace.json", workspace);
-    studio.showStatus("Workspace exported.", "success");
+  studio.downloadJson("structured-data-engineering-workspace.json", workspace);
+  studio.showStatus("Workspace exported.", "success");
 }
 
 async function importWorkspace(event) {
-    const file = event.target.files[0];
+  const file = event.target.files[0];
 
-    if (!file) return;
+  if (!file) return;
 
-    const text = await file.text();
-    const parsed = studio.parseJson(text);
+  const text = await file.text();
+  const parsed = studio.parseJson(text);
 
-    if (!parsed.ok) {
-        studio.showStatus(`Import failed: ${parsed.error}`, "danger");
-        return;
-    }
+  if (!parsed.ok) {
+    studio.showStatus(`Import failed: ${parsed.error}`, "danger");
+    return;
+  }
 
-    studio.saveWorkspace(parsed.data);
-    studio.applyThemeSettings();
-    renderSettingsForm();
-    renderThemeCustomizer();
-    studio.renderSidebar("settings");
+  studio.saveWorkspace(parsed.data);
+  studio.applyThemeSettings();
+  renderSettingsForm();
+  renderThemeCustomizer();
+  studio.renderSidebar("settings");
 
-    studio.showStatus("Workspace imported successfully.", "success");
+  studio.showStatus("Workspace imported successfully.", "success");
 }
 
 function resetDemoWorkspace() {
-    studio.resetWorkspace();
-    renderSettingsForm();
-    renderThemeCustomizer();
-    studio.renderSidebar("settings");
+  studio.resetWorkspace();
+  renderSettingsForm();
+  renderThemeCustomizer();
+  studio.renderSidebar("settings");
 
-    studio.showStatus("Demo workspace restored.", "success");
+  studio.showStatus("Demo workspace restored.", "success");
 }
 
 function clearWorkspace() {
-    localStorage.removeItem(studio.STORAGE_KEY);
+  localStorage.removeItem(studio.STORAGE_KEY);
 
-    const workspace = studio.seedDemoData();
-    studio.saveWorkspace(workspace);
+  const workspace = studio.seedDemoData();
+  studio.saveWorkspace(workspace);
 
-    studio.applyThemeSettings();
-    renderSettingsForm();
-    renderThemeCustomizer();
-    studio.renderSidebar("settings");
+  studio.applyThemeSettings();
+  renderSettingsForm();
+  renderThemeCustomizer();
+  studio.renderSidebar("settings");
 
-    studio.showStatus("LocalStorage cleared and demo data restored.", "success");
+  studio.showStatus("LocalStorage cleared and demo data restored.", "success");
 }
